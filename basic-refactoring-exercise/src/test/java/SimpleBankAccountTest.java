@@ -57,4 +57,6 @@ class SimpleBankAccountTest {
         bankAccount.withdraw(WRONG_USER_ID, AMOUNT_70_MONEY);
         assertEquals(AMOUNT_100_MONEY, bankAccount.getBalance());
     }
+
+    
 }
