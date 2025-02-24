@@ -16,7 +16,7 @@ class SimpleBankAccountTest {
     public static final int WRONG_USER_ID = 2;
     public static final int AMOUNT_50_MONEY = 50;
     public static final int AMOUNT_70_MONEY = 70;
-    public static final int AMOUNT_30_MONEY = 30;
+    public static final int AMOUNT_29_MONEY = 29;
     private AccountHolder accountHolder;
     private BankAccount bankAccount;
 
@@ -48,7 +48,7 @@ class SimpleBankAccountTest {
     void testWithdraw() {
         bankAccount.deposit(accountHolder.getId(), AMOUNT_100_MONEY);
         bankAccount.withdraw(accountHolder.getId(), AMOUNT_70_MONEY);
-        assertEquals(AMOUNT_30_MONEY, bankAccount.getBalance());
+        assertEquals(AMOUNT_29_MONEY, bankAccount.getBalance());
     }
 
     @Test
@@ -58,5 +58,11 @@ class SimpleBankAccountTest {
         assertEquals(AMOUNT_100_MONEY, bankAccount.getBalance());
     }
 
-    
+    @Test
+    void testNotAllowedWithdraw() {
+        bankAccount.deposit(accountHolder.getId(), AMOUNT_100_MONEY);
+        bankAccount.withdraw(WRONG_USER_ID, AMOUNT_100_MONEY);
+        assertEquals(AMOUNT_100_MONEY, bankAccount.getBalance());
+    }
+
 }
