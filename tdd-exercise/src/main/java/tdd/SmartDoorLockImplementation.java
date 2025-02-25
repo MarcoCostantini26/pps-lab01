@@ -11,14 +11,14 @@ public class SmartDoorLockImplementation implements SmartDoorLock{
 
     @Override
     public void setPin(int pin) {
-        if(!this.isLocked() || !this.isBlocked()){
+        if(!this.isLocked() && !this.isBlocked()){
             this.pin = pin;
         }
     }
 
     @Override
     public void unlock(int pin) {
-        if(pin == this.pin && !this.isBlocked() && !this.isLocked()){
+        if(this.pin == pin && !this.isBlocked() && this.isLocked()){
             this.locked = false;
         }
     }
