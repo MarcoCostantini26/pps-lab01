@@ -5,6 +5,7 @@ import java.util.List;
 
 public class MinMaxStackImplementation implements MinMaxStack{
 
+    public static final int GET_RIGHT_INDEX = 1;
     private final List<Integer> stack;
 
     public MinMaxStackImplementation() {
@@ -18,7 +19,9 @@ public class MinMaxStackImplementation implements MinMaxStack{
 
     @Override
     public int pop() {
-        return 0;
+        var lastValue = this.stack.get(this.size() - GET_RIGHT_INDEX);
+        this.stack.remove(this.size() - GET_RIGHT_INDEX);
+        return lastValue;
     }
 
     @Override
