@@ -19,14 +19,11 @@ public class MinMaxStackImplementation implements MinMaxStack{
 
     @Override
     public int pop() {
-        if(this.isEmpty()){
-            throw new IllegalStateException("the stack is empty.");
-        }else{
-            var lastValue = this.stack.get(this.size() - GET_RIGHT_INDEX);
-            this.stack.remove(this.size() - GET_RIGHT_INDEX);
-            return lastValue;
-        }
+        this.throwAnIllegalStateExeptionIfStackIsEmpty();
 
+        var lastValue = this.stack.get(this.size() - GET_RIGHT_INDEX);
+        this.stack.remove(this.size() - GET_RIGHT_INDEX);
+        return lastValue;
     }
 
     @Override
@@ -42,6 +39,12 @@ public class MinMaxStackImplementation implements MinMaxStack{
     @Override
     public int getMax() {
         return 0;
+    }
+
+    private void throwAnIllegalStateExeptionIfStackIsEmpty(){
+        if(this.isEmpty()){
+            throw new IllegalStateException("the stack is empty.");
+        }
     }
 
     @Override
