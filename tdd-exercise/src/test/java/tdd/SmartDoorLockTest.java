@@ -10,16 +10,12 @@ public class SmartDoorLockTest {
     private static final int TESTING_NEW_PIN = 1235;
     public static final int TESTING_WRONG_PIN = 1236;
     public static final int MAX_ATTEMPTS = 4;
-
-    @Test
-    public void todo() {
-        assertTrue(true);
-    }
+    public static final int FAILED_ATTEMPTS_AFTER_RESET = 0;
 
     @Test
     public void testInitialStateOfSmartDoor(){
         final SmartDoorLock smartDoorLock = new SmartDoorLockImplementation();
-        assertEquals(false, smartDoorLock.isLocked());
+        assertFalse(smartDoorLock.isLocked());
     }
 
     @Test
@@ -28,7 +24,7 @@ public class SmartDoorLockTest {
         smartDoorLock.setPin(TESTING_PIN);
         smartDoorLock.lock();
         smartDoorLock.unlock(TESTING_PIN);
-        assertEquals(false, smartDoorLock.isLocked());
+        assertFalse(smartDoorLock.isLocked());
     }
 
     @Test
@@ -38,7 +34,7 @@ public class SmartDoorLockTest {
         smartDoorLock.lock();
         smartDoorLock.setPin(TESTING_NEW_PIN);
         smartDoorLock.unlock(TESTING_NEW_PIN);
-        assertEquals(true, smartDoorLock.isLocked());
+        assertTrue(smartDoorLock.isLocked());
     }
 
     @Test
@@ -60,5 +56,28 @@ public class SmartDoorLockTest {
             smartDoorLock.unlock(TESTING_WRONG_PIN);
         }
         assertEquals(true, smartDoorLock.isBlocked());
+    }
+
+    @Test
+    public void testLockDoorWithPinNotSetted(){
+        final SmartDoorLock smartDoorLock = new SmartDoorLockImplementation();
+        assertThrows(IllegalStateException.class, smartDoorLock::lock);
+    }
+
+    @Test
+    public void testResetDoor(){
+        final SmartDoorLock smartDoorLock = new SmartDoorLockImplementation();
+        smartDoorLock.setPin(TESTING_PIN);
+        smartDoorLock.lock();
+        for(int i = 0; i <= MAX_ATTEMPTS; i++){
+            smartDoorLock.unlock(TESTING_WRONG_PIN);
+        }
+        smartDoorLock.reset();
+        assertAll(
+                () -> assertThrows(IllegalStateException.class, smartDoorLock::lock),
+                () -> assertEquals(FAILED_ATTEMPTS_AFTER_RESET, smartDoorLock.getFailedAttempts()),
+                () -> assertFalse(smartDoorLock.isBlocked()),
+                () -> assertFalse(smartDoorLock.isLocked())
+        );
     }
 }

@@ -21,7 +21,7 @@ public interface SmartDoorLock {
      * If the PIN is correct, the door unlocks.
      * If incorrect, the failed attempts counter increases.
      * If too many failed attempts occur, the lock goes into a "blocked" state.
-     *
+
      * @param pin The PIN entered by the user.
      */
     void unlock(int pin);

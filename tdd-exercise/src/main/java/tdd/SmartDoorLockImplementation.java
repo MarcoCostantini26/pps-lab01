@@ -4,6 +4,7 @@ public class SmartDoorLockImplementation implements SmartDoorLock{
 
     public static final int INITIAL_ATTEMPTS = 0;
     public static final int MAX_ATTEMPTS = 4;
+    public static final int INITIAL_PIN = 0;
     private boolean locked;
     private boolean blocked;
     private int pin;
@@ -13,6 +14,7 @@ public class SmartDoorLockImplementation implements SmartDoorLock{
         this.locked = false;
         this.blocked = false;
         this.attempts = INITIAL_ATTEMPTS;
+        this.pin = INITIAL_PIN;
     }
 
     @Override
@@ -49,7 +51,16 @@ public class SmartDoorLockImplementation implements SmartDoorLock{
 
     @Override
     public void lock() {
-        this.locked = true;
+        if(isPinSetted()){
+            this.locked = true;
+        }else{
+            throw new IllegalStateException("The Pin is not setted");
+        }
+
+    }
+
+    private boolean isPinSetted(){
+        return this.pin != INITIAL_PIN;
     }
 
     @Override
@@ -74,6 +85,9 @@ public class SmartDoorLockImplementation implements SmartDoorLock{
 
     @Override
     public void reset() {
-
+        this.locked = false;
+        this.blocked = false;
+        this.pin = INITIAL_PIN;
+        this.attempts = INITIAL_ATTEMPTS;
     }
 }
