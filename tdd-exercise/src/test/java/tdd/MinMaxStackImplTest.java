@@ -61,4 +61,10 @@ class MinMaxStackImplTest {
         );
 
     }
+
+    @Test
+    public void testPopThrowExeptionWithEmptyStack(){
+        final MinMaxStack stack = new MinMaxStackImplementation();
+        assertThrows(IllegalStateException.class, stack::pop);
+    }
 }
