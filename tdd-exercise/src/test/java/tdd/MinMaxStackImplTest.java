@@ -13,6 +13,7 @@ class MinMaxStackImplTest {
     public static final int FIRTS_VALUE_IN_STACK = 1;
     public static final int SECOND_VALUE_IN_STACK = 2;
     public static final int EMPTY_STACK_SIZE = 0;
+    public static final int ONE_VALUE_IN_STACK = 1;
 
     @Test
     public void todo() {
@@ -44,6 +45,19 @@ class MinMaxStackImplTest {
                 () -> assertEquals(FIRTS_VALUE_IN_STACK, stack.pop()),
                 () -> assertTrue(stack.isEmpty()),
                 () -> assertEquals(EMPTY_STACK_SIZE, stack.size())
+        );
+
+    }
+
+    @Test
+    public void testPopInStackWithTwoValues(){
+        final MinMaxStack stack = new MinMaxStackImplementation();
+        stack.push(FIRTS_VALUE_IN_STACK);
+        stack.push(SECOND_VALUE_IN_STACK);
+        assertAll(
+                () -> assertEquals(SECOND_VALUE_IN_STACK, stack.pop()),
+                () -> assertFalse(stack.isEmpty()),
+                () -> assertEquals(ONE_VALUE_IN_STACK, stack.size())
         );
 
     }
