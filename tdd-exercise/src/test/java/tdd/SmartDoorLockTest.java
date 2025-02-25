@@ -95,7 +95,7 @@ public class SmartDoorLockTest {
         }
         assertAll(
                 () -> assertTrue(smartDoorLock.isBlocked()),
-                () -> assertEquals(VALUE_HIGHER_THAN_MAX_ATTEMPTS, smartDoorLock.getFailedAttempts())
+                () -> assertEquals(MAX_ATTEMPTS, smartDoorLock.getFailedAttempts())
         );
     }
 

@@ -38,9 +38,11 @@ public class SmartDoorLockImplementation implements SmartDoorLock{
     }
 
     private void increasingAttemptsVerifingMaxAttempts(){
-        this.attempts++;
-        if(this.getFailedAttempts() >= this.getMaxAttempts()){
+
+        if(this.getFailedAttempts() == this.getMaxAttempts()){
             this.blocked = true;
+        }else{
+            this.attempts++;
         }
     }
 
