@@ -45,6 +45,8 @@ public class SmartDoorLockTest {
         smartDoorLock.lock();
         smartDoorLock.unlock(TESTING_WRONG_PIN);
         assertEquals(1, smartDoorLock.getFailedAttempts());
+        smartDoorLock.unlock(TESTING_PIN);
+        assertEquals(1, smartDoorLock.getFailedAttempts());
     }
 
     @Test
@@ -55,7 +57,7 @@ public class SmartDoorLockTest {
         for(int i = 0; i <= MAX_ATTEMPTS; i++){
             smartDoorLock.unlock(TESTING_WRONG_PIN);
         }
-        assertEquals(true, smartDoorLock.isBlocked());
+        assertTrue(smartDoorLock.isBlocked());
     }
 
     @Test
