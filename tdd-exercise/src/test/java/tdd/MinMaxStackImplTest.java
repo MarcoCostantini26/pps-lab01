@@ -9,4 +9,10 @@ class MinMaxStackImplTest {
     public void todo() {
         assertTrue(true);
     }
+
+    @Test
+    public void initialStateOfStack(){
+        final MinMaxStack stack = new MinMaxStackImplementation();
+        assertTrue(stack.isEmpty());
+    }
 }
