@@ -6,6 +6,7 @@ import java.util.List;
 public class MinMaxStackImplementation implements MinMaxStack{
 
     public static final int GET_RIGHT_INDEX = 1;
+    public static final int NO_VALUE_FOUND = 0;
     private final List<Integer> stack;
 
     public MinMaxStackImplementation() {
@@ -35,7 +36,7 @@ public class MinMaxStackImplementation implements MinMaxStack{
     @Override
     public int getMin() {
         this.throwAnIllegalStateExeptionIfStackIsEmpty();
-        return stack.stream().
+        return this.stack.stream().sorted().findFirst().orElse(NO_VALUE_FOUND);
     }
 
     @Override

@@ -73,4 +73,11 @@ class MinMaxStackImplTest {
     public void testPeekThrowExeptionWithEmptyStack(){
         assertThrows(IllegalStateException.class, stack::peek);
     }
+
+    @Test
+    public void testMinInStack(){
+        stack.push(FIRST_VALUE_IN_STACK);
+        stack.push(SECOND_VALUE_IN_STACK);
+        assertEquals(FIRST_VALUE_IN_STACK, stack.getMin());
+    }
 }
