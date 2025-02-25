@@ -11,6 +11,7 @@ public class SmartDoorLockTest {
     public static final int TESTING_WRONG_PIN = 1236;
     public static final int MAX_ATTEMPTS = 4;
     public static final int FAILED_ATTEMPTS_AFTER_RESET = 0;
+    public static final int INITIAL_ATTEMPTS = 0;
     public static final int VALUE_HIGHER_THAN_MAX_ATTEMPTS = 6;
 
     @Test
@@ -95,6 +96,17 @@ public class SmartDoorLockTest {
         assertAll(
                 () -> assertTrue(smartDoorLock.isBlocked()),
                 () -> assertEquals(VALUE_HIGHER_THAN_MAX_ATTEMPTS, smartDoorLock.getFailedAttempts())
+        );
+    }
+
+    @Test
+    public void testEdgeCaseUnlockDoorWithOpenDoor(){
+        final SmartDoorLock smartDoorLock = new SmartDoorLockImplementation();
+        smartDoorLock.setPin(TESTING_PIN);
+        smartDoorLock.unlock(TESTING_PIN);
+        assertAll(
+                () ->  assertFalse(smartDoorLock.isLocked()),
+                () -> assertEquals(INITIAL_ATTEMPTS, smartDoorLock.getFailedAttempts())
         );
     }
 }

@@ -34,7 +34,7 @@ public class SmartDoorLockImplementation implements SmartDoorLock{
     }
 
     private boolean isDoorUnlockable(int pin){
-        return this.pin == pin && !this.isBlocked() && this.isLocked();
+        return this.pin == pin && !this.isBlocked();
     }
 
     private void increasingAttemptsVerifingMaxAttempts(){
