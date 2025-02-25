@@ -2,15 +2,12 @@ package tdd;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class MinMaxStackImplTest {
 
     public static final int SIZE_STACK_AFTER_PUSH_TWO_ELEMENTS = 2;
-    public static final int FIRTS_VALUE_IN_STACK = 1;
+    public static final int FIRST_VALUE_IN_STACK = 1;
     public static final int SECOND_VALUE_IN_STACK = 2;
     public static final int EMPTY_STACK_SIZE = 0;
     public static final int ONE_VALUE_IN_STACK = 1;
@@ -29,7 +26,7 @@ class MinMaxStackImplTest {
     @Test
     public void testPushInStack(){
         final MinMaxStack stack = new MinMaxStackImplementation();
-        stack.push(FIRTS_VALUE_IN_STACK);
+        stack.push(FIRST_VALUE_IN_STACK);
         stack.push(SECOND_VALUE_IN_STACK);
         assertAll(
                 () -> assertFalse(stack.isEmpty()),
@@ -40,9 +37,9 @@ class MinMaxStackImplTest {
     @Test
     public void testPopInStackWithOneValue(){
         final MinMaxStack stack = new MinMaxStackImplementation();
-        stack.push(FIRTS_VALUE_IN_STACK);
+        stack.push(FIRST_VALUE_IN_STACK);
         assertAll(
-                () -> assertEquals(FIRTS_VALUE_IN_STACK, stack.pop()),
+                () -> assertEquals(FIRST_VALUE_IN_STACK, stack.pop()),
                 () -> assertTrue(stack.isEmpty()),
                 () -> assertEquals(EMPTY_STACK_SIZE, stack.size())
         );
@@ -52,7 +49,7 @@ class MinMaxStackImplTest {
     @Test
     public void testPopInStackWithTwoValues(){
         final MinMaxStack stack = new MinMaxStackImplementation();
-        stack.push(FIRTS_VALUE_IN_STACK);
+        stack.push(FIRST_VALUE_IN_STACK);
         stack.push(SECOND_VALUE_IN_STACK);
         assertAll(
                 () -> assertEquals(SECOND_VALUE_IN_STACK, stack.pop()),
@@ -66,5 +63,19 @@ class MinMaxStackImplTest {
     public void testPopThrowExeptionWithEmptyStack(){
         final MinMaxStack stack = new MinMaxStackImplementation();
         assertThrows(IllegalStateException.class, stack::pop);
+    }
+
+    @Test
+    public void testPeekStack(){
+        final MinMaxStack stack = new MinMaxStackImplementation();
+        stack.push(FIRST_VALUE_IN_STACK);
+        stack.push(SECOND_VALUE_IN_STACK);
+        assertEquals(SECOND_VALUE_IN_STACK, stack.peek());
+    }
+
+    @Test
+    public void testPeekThrowExeptionWithEmptyStack(){
+        final MinMaxStack stack = new MinMaxStackImplementation();
+        assertThrows(IllegalStateException.class, stack::peek);
     }
 }
