@@ -5,7 +5,7 @@ public class SmartDoorLockImplementation implements SmartDoorLock{
     private boolean locked;
 
     public SmartDoorLockImplementation() {
-        this.locked = true;
+        this.locked = false;
     }
 
     @Override

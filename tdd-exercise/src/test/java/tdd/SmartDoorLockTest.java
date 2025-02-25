@@ -13,6 +13,6 @@ public class SmartDoorLockTest {
     @Test
     public void testInitialStateOfSmartDoor(){
         final SmartDoorLock smartDoorLock = new SmartDoorLockImplementation();
-        assertEquals(true, smartDoorLock.isLocked());
+        assertEquals(false, smartDoorLock.isLocked());
     }
 }
