@@ -8,6 +8,7 @@ public class SmartDoorLockTest {
 
     public static final int TESTING_PIN = 1234;
     private static final int TESTING_NEW_PIN = 1235;
+    public static final int TESTING_WRONG_PIN = 1236;
 
     @Test
     public void todo() {
@@ -42,6 +43,10 @@ public class SmartDoorLockTest {
     @Test
     public void testIncreasingOfAttemptsCounter(){
         final SmartDoorLock smartDoorLock = new SmartDoorLockImplementation();
-
+        assertEquals(0, smartDoorLock.getFailedAttempts());
+        smartDoorLock.setPin(TESTING_PIN);
+        smartDoorLock.lock();
+        smartDoorLock.unlock(TESTING_WRONG_PIN);
+        assertEquals(1, smartDoorLock.getFailedAttempts());
     }
 }
