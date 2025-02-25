@@ -9,6 +9,7 @@ public class SmartDoorLockTest {
     public static final int TESTING_PIN = 1234;
     private static final int TESTING_NEW_PIN = 1235;
     public static final int TESTING_WRONG_PIN = 1236;
+    public static final int MAX_ATTEMPTS = 4;
 
     @Test
     public void todo() {
@@ -48,5 +49,16 @@ public class SmartDoorLockTest {
         smartDoorLock.lock();
         smartDoorLock.unlock(TESTING_WRONG_PIN);
         assertEquals(1, smartDoorLock.getFailedAttempts());
+    }
+
+    @Test
+    public void testBlockedDoorAfterMaxAttempts(){
+        final SmartDoorLock smartDoorLock = new SmartDoorLockImplementation();
+        smartDoorLock.setPin(TESTING_PIN);
+        smartDoorLock.lock();
+        for(int i = 0; i <= MAX_ATTEMPTS; i++){
+            smartDoorLock.unlock(TESTING_WRONG_PIN);
+        }
+        assertEquals(true, smartDoorLock.isBlocked());
     }
 }
