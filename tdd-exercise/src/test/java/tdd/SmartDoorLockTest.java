@@ -9,4 +9,10 @@ public class SmartDoorLockTest {
     public void todo() {
         assertTrue(true);
     }
+
+    @Test
+    public void testInitialStateOfSmartDoor(){
+        final SmartDoorLock smartDoorLock = new SmartDoorLockImplementation();
+        assertEquals(true, smartDoorLock.isLocked());
+    }
 }
