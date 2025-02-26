@@ -30,6 +30,13 @@ public interface CircularQueue {
     int unqueue();
 
     /**
+     * Checks if the queue is full.
+     *
+     * @return true if the queue is full, false otherwise.
+     */
+    boolean isFull();
+
+    /**
      * Checks if the queue is empty.
      *
      * @return true if the queue is empty, false otherwise.
