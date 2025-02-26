@@ -6,6 +6,7 @@ import java.util.List;
 public class CircularQueueImplementation implements CircularQueue{
 
     public static final int FIXED_CAPACITY = 3;
+    public static final int OLDEST_ELEMENT = 0;
     private List<Integer> queue;
 
     public CircularQueueImplementation() {
@@ -16,6 +17,11 @@ public class CircularQueueImplementation implements CircularQueue{
     @Override
     public void queue(int element) {
         this.queue.add(element);
+    }
+
+    @Override
+    public int unqueue() {
+        return this.queue.remove(OLDEST_ELEMENT);
     }
 
     @Override

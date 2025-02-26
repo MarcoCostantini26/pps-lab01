@@ -22,6 +22,13 @@ public interface CircularQueue {
     void queue(int element);
 
     /**
+     * Unqueue the oldest element in the CircularQueue
+     *
+     * @return the oldest element
+     */
+    int unqueue();
+
+    /**
      * Checks if the queue is empty.
      *
      * @return true if the queue is empty, false otherwise.

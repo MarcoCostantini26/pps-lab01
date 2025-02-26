@@ -36,4 +36,14 @@ public class CircularListTest {
         );
     }
 
+    @Test
+    public void testUnqueueAnElement(){
+        queue.queue(FIRST_ELEMENT_QUEUED);
+        assertAll(
+                () -> assertEquals(FIRST_ELEMENT_QUEUED, queue.unqueue()),
+                () -> assertTrue(queue.isEmpty()),
+                () -> assertEquals(EMPTY_QUEUE, queue.size())
+        );
+    }
+
 }
