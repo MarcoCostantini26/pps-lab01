@@ -12,6 +12,7 @@ public class CircularListTest {
     public static final int EMPTY_QUEUE = 0;
     public static final int FIRST_ELEMENT_QUEUED = 1;
     public static final int ONE_ELEMENT_IN_QUEUE = 1;
+    public static final int TWO_ELEMENT_IN_QUEUE = 2;
     public static final int SECOND_ELEMENT_QUEUED = 2;
     public static final int THIRD_ELEMENT_QUEUED = 3;
     public static final int NEW_ELEMENT = 4;
@@ -82,6 +83,18 @@ public class CircularListTest {
                 () -> assertEquals(NEW_ELEMENT, queue.getNewestElement())
         );
     }
+
+    @Test
+    public void testUnqueueAnElementAfterQueueAnElementWithFullQueue(){
+        this.fullTheQueue();
+        queue.queue(NEW_ELEMENT);
+        assertAll(
+                () -> assertEquals(SECOND_ELEMENT_QUEUED, queue.unqueue()),
+                () -> assertEquals(TWO_ELEMENT_IN_QUEUE, queue.size())
+        );
+    }
+
+
 
     private void fullTheQueue(){
         queue.queue(FIRST_ELEMENT_QUEUED);
