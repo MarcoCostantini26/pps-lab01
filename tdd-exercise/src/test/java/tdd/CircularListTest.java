@@ -49,6 +49,17 @@ public class CircularListTest {
     }
 
     @Test
+    public void testUnqueueTwoElements(){
+        queue.queue(FIRST_ELEMENT_QUEUED);
+        queue.queue(SECOND_ELEMENT_QUEUED);
+        assertAll(
+                () -> assertEquals(FIRST_ELEMENT_QUEUED, queue.unqueue()),
+                () -> assertFalse(queue.isEmpty()),
+                () -> assertEquals(ONE_ELEMENT_IN_QUEUE, queue.size())
+        );
+    }
+
+    @Test
     public void testUnqueueAnElementWithEmptyQueue(){
         assertThrows(IllegalStateException.class, queue::unqueue);
     }
