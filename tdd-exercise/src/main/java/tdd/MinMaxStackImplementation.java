@@ -1,6 +1,7 @@
 package tdd;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class MinMaxStackImplementation implements MinMaxStack{
@@ -41,7 +42,8 @@ public class MinMaxStackImplementation implements MinMaxStack{
 
     @Override
     public int getMax() {
-        return 0;
+        this.throwAnIllegalStateExeptionIfStackIsEmpty();
+        return this.stack.stream().sorted(Comparator.reverseOrder()).findFirst().orElse(NO_VALUE_FOUND);
     }
 
     private void throwAnIllegalStateExeptionIfStackIsEmpty(){

@@ -58,11 +58,6 @@ class MinMaxStackImplTest {
     }
 
     @Test
-    public void testPopThrowExeptionWithEmptyStack(){
-        assertThrows(IllegalStateException.class, stack::pop);
-    }
-
-    @Test
     public void testPeekStack(){
         stack.push(FIRST_VALUE_IN_STACK);
         stack.push(SECOND_VALUE_IN_STACK);
@@ -70,14 +65,26 @@ class MinMaxStackImplTest {
     }
 
     @Test
-    public void testPeekThrowExeptionWithEmptyStack(){
-        assertThrows(IllegalStateException.class, stack::peek);
-    }
-
-    @Test
     public void testMinInStack(){
         stack.push(FIRST_VALUE_IN_STACK);
         stack.push(SECOND_VALUE_IN_STACK);
         assertEquals(FIRST_VALUE_IN_STACK, stack.getMin());
+    }
+
+    @Test
+    public void testMaxInStack(){
+        stack.push(FIRST_VALUE_IN_STACK);
+        stack.push(SECOND_VALUE_IN_STACK);
+        assertEquals(SECOND_VALUE_IN_STACK, stack.getMax());
+    }
+
+    @Test
+    public void testThrowsInAllMethods(){
+        assertAll(
+                () -> assertThrows(IllegalStateException.class, stack::peek),
+                () -> assertThrows(IllegalStateException.class, stack::pop),
+                () -> assertThrows(IllegalStateException.class, stack::getMax),
+                () -> assertThrows(IllegalStateException.class, stack::getMin)
+        );
     }
 }
