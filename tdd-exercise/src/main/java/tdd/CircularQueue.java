@@ -37,6 +37,14 @@ public interface CircularQueue {
     boolean isFull();
 
     /**
+     * Gets the newest element in the queue.
+     *
+     * @return The newest element of the queue.
+     * @throws IllegalStateException if the queue is empty.
+     */
+    int getNewestElement();
+
+    /**
      * Checks if the queue is empty.
      *
      * @return true if the queue is empty, false otherwise.

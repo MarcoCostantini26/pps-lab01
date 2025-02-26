@@ -7,31 +7,45 @@ public class CircularQueueImplementation implements CircularQueue{
 
     public static final int FIXED_CAPACITY = 3;
     public static final int OLDEST_ELEMENT = 0;
-    private List<Integer> queue;
+    public static final int ADJUST_INDEX_IN_QUEUE = 1;
+    private final List<Integer> queue;
 
     public CircularQueueImplementation() {
-        this.queue = new ArrayList<>(FIXED_CAPACITY);
+        this.queue = new ArrayList<>();
     }
 
 
     @Override
     public void queue(int element) {
-        this.queue.add(element);
+        if(this.isFull()){
+            this.unqueue();
+        }
+        this.queue.add(this.size(), element);
     }
 
     @Override
     public int unqueue() {
-        if(this.isEmpty()){
-            throw new IllegalStateException("queue is empty");
-        }else{
-            return this.queue.remove(OLDEST_ELEMENT);
-        }
+        this.throwExeptionIfQueueIsEmpty();
+        return this.queue.remove(OLDEST_ELEMENT);
     }
 
     @Override
     public boolean isFull() {
         return this.queue.size() == FIXED_CAPACITY;
     }
+
+    @Override
+    public int getNewestElement() {
+        this.throwExeptionIfQueueIsEmpty();
+        return this.queue.get(this.size() - ADJUST_INDEX_IN_QUEUE);
+    }
+
+    private void throwExeptionIfQueueIsEmpty(){
+        if(this.isEmpty()){
+            throw new IllegalStateException("queue is empty");
+        }
+    }
+
 
     @Override
     public boolean isEmpty() {

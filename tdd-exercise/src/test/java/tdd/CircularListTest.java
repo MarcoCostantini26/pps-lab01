@@ -14,6 +14,8 @@ public class CircularListTest {
     public static final int ONE_ELEMENT_IN_QUEUE = 1;
     public static final int SECOND_ELEMENT_QUEUED = 2;
     public static final int THIRD_ELEMENT_QUEUED = 3;
+    public static final int NEW_ELEMENT = 4;
+    public static final int QUEUE_FULL = 3;
     public CircularQueue queue;
 
     @BeforeEach
@@ -66,9 +68,24 @@ public class CircularListTest {
 
     @Test
     public void testFullQueue(){
+        this.fullTheQueue();
+        assertTrue(queue.isFull());
+    }
+
+    @Test
+    public void testQueueAnElementWithFullQueue(){
+        this.fullTheQueue();
+        queue.queue(NEW_ELEMENT);
+        assertAll(
+                () -> assertTrue(queue.isFull()),
+                () -> assertEquals(QUEUE_FULL, queue.size()),
+                () -> assertEquals(NEW_ELEMENT, queue.getNewestElement())
+        );
+    }
+
+    private void fullTheQueue(){
         queue.queue(FIRST_ELEMENT_QUEUED);
         queue.queue(SECOND_ELEMENT_QUEUED);
         queue.queue(THIRD_ELEMENT_QUEUED);
-        assertTrue(queue.isFull());
     }
 }
