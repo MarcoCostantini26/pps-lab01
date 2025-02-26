@@ -25,6 +25,7 @@ public interface CircularQueue {
      * Unqueue the oldest element in the CircularQueue
      *
      * @return the oldest element
+     * @throws IllegalStateException if the queue is empty.
      */
     int unqueue();
 

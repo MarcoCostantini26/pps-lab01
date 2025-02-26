@@ -46,4 +46,8 @@ public class CircularListTest {
         );
     }
 
+    @Test
+    public void testUnqueueAnElementWithEmptyQueue(){
+        assertThrows(IllegalStateException.class, queue::unqueue);
+    }
 }

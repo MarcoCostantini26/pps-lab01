@@ -21,7 +21,11 @@ public class CircularQueueImplementation implements CircularQueue{
 
     @Override
     public int unqueue() {
-        return this.queue.remove(OLDEST_ELEMENT);
+        if(this.isEmpty()){
+            throw new IllegalStateException("queue is empty");
+        }else{
+            return this.queue.remove(OLDEST_ELEMENT);
+        }
     }
 
     @Override
